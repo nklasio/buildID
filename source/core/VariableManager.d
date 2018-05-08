@@ -24,7 +24,6 @@ struct VariableManager {
             }
             return entries.join(" ");
         } else {
-            writeln(pa, " | ", __LINE__);
             string[] entries = [];
             auto build = new SourceDirectory(VariableManager.Resolve(VariableManager.Variables[pa[0]]), false, true);
             entries ~= build.fetchEntries(format("*.%s", pa[1]));
@@ -33,11 +32,9 @@ struct VariableManager {
     }
 
     static string Resolve(string s) {
-        writeln(s);
         if(s.canFind("$(")) {
             string resolved = "";
             foreach(res ;s.matchAll("\\$\\((.*?)\\)")) {
-                writeln(res);
                 if(res[1].canFind(":")) {
                     resolved = s.replace(res[0], VariableManager.ResolveSource(res[1]));
                 } else {

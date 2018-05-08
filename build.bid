@@ -6,7 +6,7 @@
     },
     "variables": [
         {"name" : "name", "value": "buildID"},
-        {"name" : "version", "value": "0.1.2"},
+        {"name" : "version", "value": "0.1.3"},
         {"name" : "buildDir", "value" :"build-$(version)"}
     ],
     "sourceDirs": [

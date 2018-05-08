@@ -11,11 +11,6 @@ import core.models.SourceDirectory;
 import core.models.Command;
 import core.VariableManager;
 
-///
-/// dmd -c -O -od=build-test -release source/app.d source/core/Parser.d source/core/models/Project.d source/core/models/Command.d source/core/models/SourceDirectory.d
-///
-
-
 class Parser {
     private string _buildFile = void;
     private Project _project = void;
@@ -85,9 +80,9 @@ class Parser {
             writeln("PrepareCommands: ", _prepareCommands.length);
             writeln("BuildCommands: ", _buildCommands.length);
             writeln("CheckCommands: ", _checkCommands.length);
+            writeln("Executin functions...");
         }
 
-        writeln("Executin functions...");
         foreach(pFunc; _prepareCommands) {
             pFunc.execute();
         }
