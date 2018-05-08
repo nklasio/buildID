@@ -1,0 +1,31 @@
+{
+    "project" : {
+        "name": "Example",
+        "author": "Niklas Stambor",
+        "license": "GPL-3.0"
+    },
+    "variables": [
+        {"name" : "name", "value": "Example"},
+        {"name" : "version", "value": "1.2.5"},
+        {"name" : "buildDir", "value" :"build-$(version)"}
+    ],
+    "sourceDirs": [
+        {"path": "source", "recursive": true}
+    ],
+    "dependencies": [
+        {"lib": "curl", "buildRequirement": false},
+        {"lib": "dmd", "buildRequirement": true}
+    ],
+    "functions": {
+        "prepare": [
+            {"command": "echo I DO NOT HAVE A REASON TO BE HERE BUT I CAN YOU KNOW?!", "requirements": ["sudo"] }
+        ],
+        "build": [
+            {"command": "dmd -c -O -od=$(buildDir) -release  $(source:d)", "requirements": [] },
+            {"command": "echo TODO: Link", "requirements": []}
+        ],
+        "check": [
+            {"command": "echo Maybe implement some tests here.", "requirements": []}
+        ]
+    }
+}

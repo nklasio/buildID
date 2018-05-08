@@ -1,0 +1,9 @@
+{
+	"name": "buildid",
+	"authors": [
+		"Niklas Stambor"
+	],
+	"description": "A Buildsystem written in Dlang",
+	"copyright": "Copyright © 2018, Niklas Stambor",
+	"license": "GPL-3.0"
+}
