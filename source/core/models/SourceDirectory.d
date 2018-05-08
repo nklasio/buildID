@@ -9,8 +9,13 @@ class SourceDirectory {
     private string[] _entries = void;
 
     import std.format;
-    this(string path, bool recursive) {
-        assert(exists(path) == true, format("Source Path is not valid \"%s\"", path));
+    this(string path, bool recursive = false, bool createIfNonExistent = false) {
+        if(!createIfNonExistent){
+            assert(exists(path) == true, format("Source Path is not valid \"%s\"", path));
+        } else {
+            if(!exists(path))
+                mkdirRecurse(path);
+        }
         this._path = path;
         this._recursive = recursive;
         fetchEntries();

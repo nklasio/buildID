@@ -12,3 +12,6 @@ buildid-test-*
 *.o
 *.obj
 *.lst
+buildid
+build-*
+buildI*

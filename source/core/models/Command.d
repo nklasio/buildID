@@ -16,14 +16,16 @@ class Command  {
         this._command = command;
         this._requirements = requirements;
 
-        resolveSymbols();       
+         
     }
 
     bool execute() {
+        resolveSymbols();      
         auto proc = executeShell(_command);
         if(proc.status != 0) {
-            writeln("ERROR! : Program returned " ~ to!string(proc.status));
             writeln(proc.output);
+            writeln(_command);
+            writeln("ERROR! : Program returned " ~ to!string(proc.status));
             return false;
         } else {
             writeln(proc.output);
@@ -35,9 +37,8 @@ class Command  {
         if(_command.canFind("$(")) {
             string resolvedCommand = "";
             foreach(res ;_command.matchAll("\\$\\((.*?)\\)")) {
-                writeln(res);
                 if(res[1].canFind(":")) {
-                    resolvedCommand = _command.replace(res[0], VariableManager.ResolveSource(res[1].split(":")[1]));
+                    resolvedCommand = _command.replace(res[0], VariableManager.ResolveSource(res[1]));
                 } else {
                     resolvedCommand = _command.replace(res[0], VariableManager.Variables[res[1]]);
                 }
