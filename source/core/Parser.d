@@ -23,7 +23,7 @@ class Parser {
 
 
     this(string buildFile) {
-        assert(exists(buildFile) == true, "Build file does not exist!");
+        assert(exists(buildFile) == true, format("Build file does not exist! << %s", buildFile));
         this._buildFile = buildFile;
     }
 
@@ -64,7 +64,7 @@ class Parser {
             _buildCommands ~= new Command(build["command"].str, reqs);
         }
 
-        foreach(check; functionContent["prepare"].array) {
+        foreach(check; functionContent["check"].array) {
             string[] reqs = [];
             foreach(req; check["requirements"].array) { reqs ~= req.str;}
             _checkCommands ~= new Command(check["command"].str, reqs);

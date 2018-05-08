@@ -1,7 +1,18 @@
+import std.getopt;
 import std.stdio;
 import core.Parser;
-void main()
+int main(string[] args)
 {
-	Parser parser = new Parser("build.bid");
+	string buildFile = "";
+
+    auto helpInformation = getopt(args, "b|buildfile", "Specify buildfile", &buildFile);
+
+    if(helpInformation.helpWanted) {
+        defaultGetoptPrinter("buildID - Copyright © 2018, Niklas Stambor", helpInformation.options);
+		writeln("Default buildfile: <project-root>build.bid");
+    }
+	Parser parser = new Parser(buildFile != null ? buildFile : "build.bid");
 	parser.parse();
+	return 0;
 }
+

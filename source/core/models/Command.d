@@ -28,7 +28,6 @@ class Command  {
             writeln("ERROR! : Program returned " ~ to!string(proc.status));
             return false;
         } else {
-            writeln(proc.output);
             return true;
         }       
     }
