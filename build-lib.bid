@@ -1,24 +1,42 @@
 {
-    "project" : {
+    "project": {
         "name": "buildID-lib",
         "author": "Niklas Stambor",
         "license": "GPL-3.0"
     },
     "variables": [
-        {"name" : "name", "value": "buildID"},
-        {"name" : "version", "value": "0-3-0-lib"},
-        {"name" : "buildDir", "value" :"build-$(version)"}
+        {
+            "name": "name",
+            "value": "buildID"
+        },
+        {
+            "name": "version",
+            "value": "0-3-0-lib"
+        },
+        {
+            "name": "buildDir",
+            "value": "build-$(version)"
+        }
     ],
     "sourceDirs": [
-        {"path": "source/core", "recursive": true}
+        {
+            "path": "source/core",
+            "recursive": true
+        }
     ],
     "dependencies": [
-        {"lib": "dmd", "buildRequirement": true}
+        {
+            "lib": "dmd",
+            "buildRequirement": true
+        }
     ],
     "functions": {
         "prepare": [],
         "build": [
-            {"command": "dmd -lib $(source:d) -of=buildID-$(version).a", "requirements": [] }
+            {
+                "command": "dmd -lib -of=import/$(name)/$(version)/buildID-$(version).a -Hd=import/$(name)/$(version)/ $(source:d) ",
+                "requirements": []
+            }
         ],
         "check": []
     }
